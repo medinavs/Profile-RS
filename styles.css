@@ -31,6 +31,7 @@
 body {
     background: var(--bg-url) no-repeat 
     top center/cover;
+    height: 100vh;
 
 }
 
@@ -40,7 +41,8 @@ body * {
 }
 
 .container {
-    width: 360px;
+    width: 100%;
+    max-width: 588px;
     margin: 56px auto 0px;
     padding: 0 24px;
 }
@@ -70,7 +72,6 @@ body * {
 #switch {
     position: relative;
     width: 64px;
-
     margin: 4px auto;
 
 }
@@ -85,8 +86,18 @@ body * {
 
     position: absolute;
     top: 50%;
+    left: 0;
     transform: translateY(-50%);
     z-index: 1;
+    animation: slide-out 0.4s forwards;
+}
+
+.light #switch button {
+    animation: slide 0.4s forwards;
+}
+
+#switch button:hover {
+    outline: 8px solid var(--highlight-color);
 }
 
 #switch span {
@@ -164,4 +175,32 @@ footer {
     padding: 24px;
     text-align: center;
     font-size: 14px;
+}
+
+@media screen and (max-widht: 767px) {
+    :root {
+        --bg-url: url('./public/bg-mobile.jpg');
+    }
+
+    .light {
+        --bg-url: url('./public/bg-mobile-light.jpg');
+    }
+} 
+
+@keyframes slide {
+    from {
+        left: 0;
+    }
+    to{
+        left: 50%;
+    }
+}
+
+@keyframes slide-out {
+    from{
+        left: 50%;
+    }
+    to{
+        left: 0;
+    }
 }
